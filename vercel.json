@@ -9,9 +9,6 @@
       ],
       "headers": [
         "Authorization"
-      ],
-      "allow": [
-        "https://pop-masters.vercel.app/"
       ]
     }
   ]
