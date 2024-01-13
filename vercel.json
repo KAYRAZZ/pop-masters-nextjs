@@ -2,9 +2,6 @@
     "rewrites": [
       {
         "source": "/(.*)",
-        "headers": {
-          "Access-Control-Allow-Origin": "*"
-        },
         "destination": "/index.html"
       }
     ]
