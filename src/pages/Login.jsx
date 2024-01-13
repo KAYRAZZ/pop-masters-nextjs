@@ -4,7 +4,8 @@ import { TokenContext } from "../hooks/TokenContext";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const apiUrl = import.meta.env.VITE_LINK;
+    // const apiUrl = import.meta.env.VITE_LINK;
+    const apiUrl = process.env.VITE_LINK;
     console.log(apiUrl);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
