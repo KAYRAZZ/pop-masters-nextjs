@@ -6,14 +6,14 @@ import Login from "../pages/Login";
 
 const PublicRoutes = () => {
     const apiUrl = import.meta.env.VITE_LINK;
-
+    console.log(apiUrl);
     const { token } = useContext(TokenContext);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
-                const response = await axios.post(apiUrl + "authenticated", null, {
+                const response = await axios.post(apiUrl + "/authenticated", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }
