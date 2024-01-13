@@ -13,7 +13,7 @@ const PublicRoutes = () => {
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
-                const response = await axios.post(apiUrl + "/authenticated", null, {
+                const response = await axios.post(apiUrl + "authenticated", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }
