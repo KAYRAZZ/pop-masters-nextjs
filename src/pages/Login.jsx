@@ -5,13 +5,14 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const apiUrl = import.meta.env.VITE_LINK;
+    console.log(apiUrl);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const { token, setToken } = useContext(TokenContext);
     const navigate = useNavigate()
     const handleClick = async () => {
-        const response = await axios.post("/login", {
+        const response = await axios.post(apiUrl+"/login", {
             username,
             password
         }, {
