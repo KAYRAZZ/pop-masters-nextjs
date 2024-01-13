@@ -8,11 +8,13 @@ const prisma = new PrismaClient();
 
 require('dotenv').config();
 
+
 const app = express();
 const port = 3001;
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 
 const secretKey = process.env.TOKEN;
 
@@ -56,9 +58,9 @@ app.post('/login', async (req, res) => {
     // Cherche si l'utilisteur et le mot de passe existe pour un utilisateur
     try {
         const user = await prisma.user.findUnique({
-            where: { username: username },
+            where: { username },
         });
-
+        console.log(user);
         if (user && await bcrypt.compare(password, user.password)) {
             // Créer le token, et sauvegarde le username dans le token 
             const token = jwt.sign({ user_id: user.user_id, username: user.username }, secretKey);
