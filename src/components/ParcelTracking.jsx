@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const ParcelTracking = () => {
-    const navigate = useNavigate()
 
     const { token } = useContext(TokenContext);
 
@@ -89,7 +88,6 @@ const ParcelTracking = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             })
-            console.log("fini");
             setFigurines(response.data.figurines);
             refBlocParcelTracking.current.removeChild(span)
         } catch (error) {
@@ -134,10 +132,6 @@ const ParcelTracking = () => {
 
     const handleFigurineSelected = (collection, name, image, reference, figurine_id) => {
         setFigurine({ collection, name, image, reference, figurine_id });
-    }
-
-    const handleClickFigurine = (figurine) => {
-        navigate(`/figurine/${figurine}`)
     }
 
     return (

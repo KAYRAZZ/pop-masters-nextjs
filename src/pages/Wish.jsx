@@ -27,7 +27,7 @@ const Wish = () => {
             }
         };
         fetchData();
-    }, [donnees])
+    }, [])
 
     const handleClickWishFigurine = async (collection, figurine_id) => {
         try {

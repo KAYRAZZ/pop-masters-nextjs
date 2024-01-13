@@ -42,7 +42,6 @@ const Navbar = () => {
         };
     }, []);
 
-
     return (
         <div id="navbar">
             <span onClick={handleNavigateHome}>POP Masters</span>

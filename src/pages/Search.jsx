@@ -8,6 +8,7 @@ const Search = () => {
     const params = new URLSearchParams(location.search);
     const searchParam = params.get('s');
     const [donnees, setDonnees] = useState([]);
+    let [isChange, setIsChange] = useState(0);
 
     const { token } = useContext(TokenContext);
 
@@ -21,16 +22,34 @@ const Search = () => {
                         'Authorization': `Bearer ${token}`,
                     },
                 })
-
+                
                 setDonnees(response.data.figurines);
+                console.log(response.data.figurines);
 
             } catch (error) {
                 console.error("Erreur lors de la requete ", error);
             }
         }
-        fetchData();
-    }, [searchParam])
 
+        fetchData();
+    }, [searchParam, isChange]);
+
+    const handleAddDeleteFigurine = async (collection, figurine_id) => {
+        try {
+            await axios.post("http://localhost:3001/addDeleteFigurine", {
+                collection,
+                figurine_id
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+            setIsChange(isChange++)
+
+        } catch (error) {
+            console.error('Erreur lors de la récupération des données :', error);
+        }
+    }
 
     return (
         <section id="figurines">

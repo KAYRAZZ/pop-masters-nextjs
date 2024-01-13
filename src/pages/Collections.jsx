@@ -10,7 +10,6 @@ const Collections = () => {
     const [search, setSearch] = useState([])
     const { token } = useContext(TokenContext);
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {

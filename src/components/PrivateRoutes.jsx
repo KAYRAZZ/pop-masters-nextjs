@@ -1,36 +1,35 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { TokenContext } from "../hooks/TokenContext";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import Login from "../pages/Login";
 
-const PrivateRoutes = () => {
+const PrivateRoutes = ({ element: Element }) => {
     const { token } = useContext(TokenContext);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    const navigate = useNavigate();
     useEffect(() => {
-        // Make asynchronous calls here to check authentication
+
         const checkAuthentication = async () => {
             try {
-                // Example: Check authentication using the token
                 const response = await axios.post("http://localhost:3001/authenticated", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }
                 });
-                if (response.data.success) {
-                    setIsAuthenticated(true);
-                } else {
-                    setIsAuthenticated(false);
+                setIsAuthenticated(response.data.success);
+
+                if (!response.data.success) {
+                    navigate("/login");
                 }
             } catch (error) {
                 console.error("Error checking authentication:", error);
+                setIsAuthenticated(false);
             }
         };
-
         checkAuthentication();
-    }, [token]);
+    }, [token, navigate]);
 
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
-};
-
+    return isAuthenticated ? <Element /> : null;
+}
 export default PrivateRoutes;

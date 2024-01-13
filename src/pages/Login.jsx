@@ -1,33 +1,40 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import { TokenContext } from "../hooks/TokenContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const { token, setToken } = useContext(TokenContext);
-
+    const navigate = useNavigate()
     const handleClick = async () => {
-        const response = await axios.post("http://localhost:3001/login", { token }, {
+        const response = await axios.post("http://localhost:3001/login", {
+            username,
+            password
+        }, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
         })
         if (response.data.success) {
-            setToken(user.accessToken)
+            setToken(response.data.token)
             setMessage("Connecter avec succès")
+            navigate("/")
+
         } else {
             setMessage("Mauvais identifiant")
         }
+        console.log(response.data.success);
     }
 
     return (
         <section>
             <div>
                 <label>Email</label>
-                <input type="text" value={email} onChange={e => setEmail(e.target.value)} />
+                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
             </div>
             <div>
                 <label>Mot de passe</label>
