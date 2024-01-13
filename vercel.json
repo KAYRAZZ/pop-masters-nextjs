@@ -1,0 +1,12 @@
+{
+    "routes": [
+      {
+        "src": "/(.*)",
+        "headers": {
+          "Access-Control-Allow-Origin": "*"
+        },
+        "dest": "/index.html"
+      }
+    ]
+  }
+  
