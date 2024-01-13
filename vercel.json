@@ -1,11 +1,11 @@
 {
-    "routes": [
+    "rewrites": [
       {
-        "src": "/(.*)",
+        "source": "/(.*)",
         "headers": {
           "Access-Control-Allow-Origin": "*"
         },
-        "dest": "/index.html"
+        "destination": "/index.html"
       }
     ]
   }
