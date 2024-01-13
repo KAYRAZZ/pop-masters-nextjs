@@ -5,6 +5,8 @@ import axios from "axios";
 
 
 const Collection = () => {
+    const apiUrl = import.meta.env.VITE_LINK;
+
     let { collection } = useParams();
     const navigate = useNavigate()
 
@@ -14,7 +16,7 @@ const Collection = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.post("http://localhost:3001/getFigurinesCollection", { collection }, {
+            const response = await axios.post(apiUrl + "/getFigurinesCollection", { collection }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -51,7 +53,7 @@ const Collection = () => {
 
     const handleAddDeleteFigurine = async (collection, figurine_id) => {
         try {
-            await axios.post("http://localhost:3001/addDeleteFigurine", {
+            await axios.post(apiUrl + "/addDeleteFigurine", {
                 collection,
                 figurine_id
             }, {
@@ -68,7 +70,7 @@ const Collection = () => {
 
     const handleClickWishFigurine = async (collection, figurine_id) => {
         try {
-            await axios.post("http://localhost:3001/wishFigurine", {
+            await axios.post(apiUrl + "/wishFigurine", {
                 collection,
                 figurine_id
             }, {

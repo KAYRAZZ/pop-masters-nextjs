@@ -4,6 +4,8 @@ import { TokenContext } from "../hooks/TokenContext";
 import axios from "axios";
 
 const Wish = () => {
+    const apiUrl = import.meta.env.VITE_LINK;
+
     const [donnees, setDonnees] = useState([]);
     const [message, setMessage] = useState("");
     const { token } = useContext(TokenContext);
@@ -11,7 +13,7 @@ const Wish = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/getFigurinesWish", null, {
+                const response = await axios.post(apiUrl + "/getFigurinesWish", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
@@ -31,7 +33,7 @@ const Wish = () => {
 
     const handleClickWishFigurine = async (collection, figurine_id) => {
         try {
-            await axios.post("http://localhost:3001/wishFigurine", {
+            await axios.post(apiUrl + "/wishFigurine", {
                 collection,
                 figurine_id
             }, {

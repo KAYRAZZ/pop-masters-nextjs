@@ -11,7 +11,7 @@ const Login = () => {
     const { token, setToken } = useContext(TokenContext);
     const navigate = useNavigate()
     const handleClick = async () => {
-        const response = await axios.post(apiUrl+"/login", {
+        const response = await axios.post(apiUrl + "/login", {
             username,
             password
         }, {

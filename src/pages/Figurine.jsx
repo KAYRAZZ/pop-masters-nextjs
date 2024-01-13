@@ -4,6 +4,8 @@ import { TokenContext } from "../hooks/TokenContext";
 import axios from "axios";
 
 const Figurine = () => {
+    const apiUrl = import.meta.env.VITE_LINK;
+
     const { figurine_id } = useParams()
     const { token } = useContext(TokenContext);
     const [message, setMessage] = useState("");
@@ -15,7 +17,7 @@ const Figurine = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/getFigurine", {
+                const response = await axios.post(apiUrl + "/getFigurine", {
                     figurine_id
                 }, {
                     headers: {
@@ -40,7 +42,7 @@ const Figurine = () => {
         setIsChange(!isChange);
         if (isChange && priceFigurine) {
             try {
-                await axios.post("http://localhost:3001/changePriceFigurine", {
+                await axios.post(apiUrl + "/changePriceFigurine", {
                     figurine_id,
                     priceFigurine
                 }, {

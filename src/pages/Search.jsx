@@ -4,6 +4,8 @@ import { TokenContext } from "../hooks/TokenContext";
 import axios from "axios";
 
 const Search = () => {
+    const apiUrl = import.meta.env.VITE_LINK;
+
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const searchParam = params.get('s');
@@ -15,7 +17,7 @@ const Search = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/searchFigurines", {
+                const response = await axios.post(apiUrl + "/searchFigurines", {
                     searchParam
                 }, {
                     headers: {
@@ -36,7 +38,7 @@ const Search = () => {
 
     const handleAddDeleteFigurine = async (collection, figurine_id) => {
         try {
-            await axios.post("http://localhost:3001/addDeleteFigurine", {
+            await axios.post(apiUrl + "/addDeleteFigurine", {
                 collection,
                 figurine_id
             }, {

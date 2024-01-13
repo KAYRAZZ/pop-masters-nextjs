@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../hooks/TokenContext";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import ParcelTracking from "../components/ParcelTracking";
 
 const Dashboard = () => {
-    const navigate = useNavigate()
+    const apiUrl = import.meta.env.VITE_LINK;
 
     const [recentlyAdded, setRecentlyAdded] = useState([""]);
 
@@ -14,7 +13,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/getLastFigurines", null, {
+                const response = await axios.post(apiUrl + "/getLastFigurines", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
@@ -28,11 +27,6 @@ const Dashboard = () => {
 
         fetchData();
     }, []);
-
-    const handleClickFigurine = (figurine_id) => {
-        navigate(`/figurine/${figurine_id}`)
-    }
-
 
     return (
         <section id="dashboard">

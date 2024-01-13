@@ -3,13 +3,15 @@ import { TokenContext } from "../hooks/TokenContext";
 import axios from "axios";
 
 const MyCollection = () => {
+    const apiUrl = import.meta.env.VITE_LINK;
+
     const { token } = useContext(TokenContext);
     const [collection, setCollection] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/getCollectionUser", null, {
+                const response = await axios.post(apiUrl + "/getCollectionUser", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },

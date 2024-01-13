@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const ParcelTracking = () => {
+    const apiUrl = import.meta.env.VITE_LINK;
 
     const { token } = useContext(TokenContext);
 
@@ -20,7 +21,7 @@ const ParcelTracking = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/getParcelData", null, {
+                const response = await axios.post(apiUrl + "/getParcelData", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
@@ -45,7 +46,7 @@ const ParcelTracking = () => {
     const handleSearch = async (event) => {
         if ((event.key === 'Enter' || event.type === 'click') && inputValue) {
             try {
-                const response = await axios.post("http://localhost:3001/searchFigurines", {
+                const response = await axios.post(apiUrl + "/searchFigurines", {
                     searchParam: inputValue
                 }, {
                     headers: {
@@ -62,7 +63,7 @@ const ParcelTracking = () => {
 
     const handleDeleteParcel = async (figurine_id) => {
         try {
-            const response = await axios.post("http://localhost:3001/deleteParcel", {
+            const response = await axios.post(apiUrl + "/deleteParcel", {
                 figurine_id
             }, {
                 headers: {
@@ -83,7 +84,7 @@ const ParcelTracking = () => {
             span.id = "loader-parcel";
             refBlocParcelTracking.current.appendChild(span);
 
-            const response = await axios.post("http://localhost:3001/refreshParcels", null, {
+            const response = await axios.post(apiUrl + "/refreshParcels", null, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -105,7 +106,7 @@ const ParcelTracking = () => {
                     refSearchFigurine.current.appendChild(span);
                 }
 
-                await axios.post("http://localhost:3001/AddFigurineParcel", {
+                await axios.post(apiUrl + "/AddFigurineParcel", {
                     suivi: inputSuivi,
                     figurine_id: figurine.figurine_id
                 }, {

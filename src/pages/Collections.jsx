@@ -6,6 +6,8 @@ import { TokenContext } from "../hooks/TokenContext";
 // let resultat = diacritic.clean(name);
 
 const Collections = () => {
+    const apiUrl = import.meta.env.VITE_LINK;
+
     const [donnees, setDonnees] = useState([]);
     const [search, setSearch] = useState([])
     const { token } = useContext(TokenContext);
@@ -13,7 +15,7 @@ const Collections = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3001/getCollections", null, {
+                const response = await axios.post(apiUrl + "/getCollections", null, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
