@@ -10,7 +10,7 @@ const Dashboard = () => {
   const { data: session } = useSession()
   // console.log(session);
 
-  const [recentlyAdded, setRecentlyAdded] = useState([""]);
+  const [recentlyAdded, setRecentlyAdded] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
