@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { getToken } from "next-auth/jwt";
-import { firefox, install } from 'playwright';
+import { firefox } from 'playwright';
 
 
 export default async function handler(req, res) {
@@ -32,7 +32,6 @@ export default async function handler(req, res) {
 
 async function suiviParcel(numSuivi) {
     try {
-        await install();
         const browser = await firefox.launch({ headless: true });
         const context = await browser.newContext({
             locale: 'fr-FR',
