@@ -23,6 +23,8 @@ const Login = () => {
             ...credentials,
             redirect: false,
         });
+        console.log(router.asPath);
+
         if (result.ok) {
             console.log("connecter");
             router.push("/")
