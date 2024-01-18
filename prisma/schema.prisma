@@ -1,0 +1,56 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // provider = "postgresql"
+  // url = env("POSTGRES_PRISMA_URL")
+  // directUrl = env("POSTGRES_URL_NON_POOLING")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id        Int              @id @default(autoincrement())
+  username       String           @unique
+  password       String
+  collections    Collection[]
+  ParcelTracking ParcelTracking[]
+}
+
+model Collection {
+  figurine_id         String
+  collection_name     String
+  figurine_owned      Boolean          @default(false)
+  figurine_wished     Boolean          @default(false)
+  date_figurine_added DateTime
+  purchase_price      String?
+  user                User             @relation(fields: [user_id], references: [user_id])
+  user_id             Int
+
+  @@id([figurine_id, user_id])
+}
+
+model ParcelTracking {
+  figurine_id       String
+  tracking_number   String
+  donnees           String?     @db.VarChar(2500)
+  date_parcel_added DateTime
+  user              User        @relation(fields: [user_id], references: [user_id])
+  user_id           Int
+
+  @@id([figurine_id, user_id])
+}
+
+model CollectionsDatas {
+  collections_datas_id     Int     @id @default(autoincrement())
+  collection_name          String
+  figurine_id              String
+  figurine_name            String
+  figurine_image           String? @db.VarChar(250)
+  figurine_box             String  @db.VarChar(250)
+  figurine_reference       String?
+  figurine_numero          String
+  figurine_special_feature String
+}
