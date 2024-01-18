@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 const Figurine = ({ params }) => {
     ProtectedPages();
 
-    const figurine_id = parseInt(params.figurine_id);
+    const figurine_id = params.figurine_id;
 
     const [message, setMessage] = useState("");
     const [figurineDatas, setFigurineDatas] = useState([]);
@@ -18,15 +18,7 @@ const Figurine = ({ params }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("/api/getFigurine", {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        figurine_id
-                    }),
-                })
+                const response = await fetch(`/api/getFigurine?figurine_id=${figurine_id}`)
                 const data = await response.json();
                 if (data.success) {
                     setFigurineDatas(data.figurine)
