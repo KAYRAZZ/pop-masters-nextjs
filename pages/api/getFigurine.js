@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     try {
         const getFigurineResult = await prisma.collectionsDatas.findMany({
             where: {
-                figurine_id: figurine_id
+                figurine_id: parseInt(figurine_id)
             },
             select: {
                 collection_name: true,
