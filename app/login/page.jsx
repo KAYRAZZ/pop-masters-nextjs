@@ -24,6 +24,7 @@ const Login = () => {
             redirect: false,
         });
         if (result.ok) {
+            console.log("connecter");
             router.push("/")
         } else {
             setMessage("Mauvais identifiant")
