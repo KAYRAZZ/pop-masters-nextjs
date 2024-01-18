@@ -1,7 +1,10 @@
 "use client"
+import ProtectedPages from '@/pages/protectedPages';
 import React, { useState, useEffect } from 'react';
 
 const Collections = () => {
+    ProtectedPages();
+
     const [donnees, setDonnees] = useState([]);
     const [search, setSearch] = useState([])
 

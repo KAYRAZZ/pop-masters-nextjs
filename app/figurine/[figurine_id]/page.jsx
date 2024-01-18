@@ -1,10 +1,12 @@
 "use client"
 
+import ProtectedPages from "@/pages/protectedPages";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Figurine = ({ params }) => {
-
+    ProtectedPages();
+    
     const figurine_id = params.figurine_id;
 
     const [message, setMessage] = useState("");

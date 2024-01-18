@@ -25,7 +25,7 @@ const Login = () => {
         });
         // console.log(result);
         if (result.ok) {
-            // router.push("/")
+            router.push("/")
         } else {
             setMessage("Mauvais identifiant")
         }

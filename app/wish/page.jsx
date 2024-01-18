@@ -1,8 +1,10 @@
 "use client"
 
+import ProtectedPages from "@/pages/protectedPages";
 import { useEffect, useState } from "react"
 
 const Wish = () => {
+    ProtectedPages();
     const [donnees, setDonnees] = useState([]);
     const [message, setMessage] = useState("");
     let [dataChange, setDataChange] = useState(0)
