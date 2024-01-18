@@ -131,7 +131,7 @@ const ParcelTracking = () => {
 
             {/* Affiche les parcels de l'utilisateur */}
             <div id="parcel-tracking">
-                {parcelTracking.map((item, index) => (
+                {parcelTracking && parcelTracking.map((item, index) => (
                     <div key={index} className="bloc-figurine-parcel" >
                         <a className="little-figurine figurine-parcel" href={`/ figurine / ${item.figurine_id}`}>
                             <img src={item.figurine_image} />
