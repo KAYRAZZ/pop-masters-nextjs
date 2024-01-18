@@ -1,36 +1,55 @@
 "use client"
-import ProtectedPages from "@/lib/protectedPages";
+import ProtectedPages from "@/lib/protectedPages"
 import { useEffect, useState } from "react";
+import ParcelTracking from "./components/ParcelTracking";
+// import { useSession } from "next-auth/react";
 
-const MyCollection = () => {
-    ProtectedPages();
+const Dashboard = () => {
+  ProtectedPages();
 
-    const [collection, setCollection] = useState([]);
+  // const { data: session } = useSession()
+  // console.log(session);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("/api/getCollectionUser");
-                const data = await response.json();
+  const [recentlyAdded, setRecentlyAdded] = useState([]);
 
-                setCollection(data.collection);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/getLastFigurines");
+        const data = await response.json();
 
-            } catch (error) {
-                console.error('Erreur lors de la récupération des données :', error);
-            }
-        }
-        fetchData();
-    }, [])
+        setRecentlyAdded(data.recentlyAddedResult);
 
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données :', error);
+      }
+    };
 
-    return (
-        <section id='collections'>
-            {collection && collection.map((item, index) => (
-                <a key={index} className='collection' href={"/collections/" + item.collection_name}>
-                    {item.collection_name}
-                </a>
-            ))}
-        </section>
-    )
+    fetchData();
+  }, []);
+
+  console.log(recentlyAdded);
+  
+  return (
+    <section id="dashboard">
+      <ParcelTracking />
+
+      <div className="container" id="bloc-recentlyAdded">
+        <span id="recentlyAdded">Les 5 dernières POP ajoutées à la collection</span>
+        <div id="little-figurines">
+          {recentlyAdded && recentlyAdded.map((item, index) => (
+            <a key={index} className="little-figurine" href={`/figurine/${item.figurine_id}`}>
+              <img src={item.figurine_image} />
+              <div>
+                <span>{item.figurine_name}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </section>
+  )
 }
-export default MyCollection;
+
+export default Dashboard;
