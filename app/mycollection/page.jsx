@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const MyCollection = () => {
     ProtectedPages();
 
-    const [collection, setCollection] = useState([""]);
+    const [collection, setCollection] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
