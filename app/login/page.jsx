@@ -11,7 +11,7 @@ const Login = () => {
 
     const router = useRouter()
     const { data: session } = useSession()
-    console.log(session);
+    // console.log(session);
     
     const handleClick = async () => {
         const credentials = {
@@ -23,7 +23,6 @@ const Login = () => {
             ...credentials,
             redirect: false,
         });
-        // console.log(result);
         if (result.ok) {
             router.push("/")
         } else {
