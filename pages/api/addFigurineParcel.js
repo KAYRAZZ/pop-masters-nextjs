@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         console.error('Erreur de requête:', error);
         // Ensure that `res` is defined before using it
         if (res) {
-            res.status(500).json({ success: false, message: "Internal Server Error" });
+            res.status(500).json({ success: false, message: "Internal Server Errorr" });
         } else {
             console.error('Response object is not defined. Unable to send an error response.');
         }
