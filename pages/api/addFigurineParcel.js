@@ -8,9 +8,9 @@ export default async function handler(req, res) {
     const { suivi } = req.body;
     const figurine_id = parseInt(req.body.figurine_id, 10);
 
-    const suiviParcelResult = await suiviParcel(suivi);
-
+    
     try {
+        const suiviParcelResult = await suiviParcel(suivi);
         await prisma.parcelTracking.create({
             data: {
                 figurine_id,
