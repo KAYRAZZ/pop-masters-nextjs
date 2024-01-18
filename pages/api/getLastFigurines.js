@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const user_id = token.sub;
 
     try {
-        let getRecentlyAddedResult = await prisma.$queryRaw`select cd.figurine_id, cd.figurine_name, c.collection_name, cd.figurine_image from collection c join collectionsDatas cd on c.figurine_id=cd.figurine_id where user_id=${user_id} order by date_figurine_added DESC limit 5;`;
+        let getRecentlyAddedResult = await prisma.$queryRaw`select cd.figurine_id, cd.figurine_name, c.collection_name, cd.figurine_image from "Collection" c join "CollectionsDatas" cd on c.figurine_id=cd.figurine_id where user_id=${user_id} order by date_figurine_added DESC limit 5;`;
 
         if (getRecentlyAddedResult) {
             res.status(200).json({ success: true, recentlyAddedResult: getRecentlyAddedResult });
