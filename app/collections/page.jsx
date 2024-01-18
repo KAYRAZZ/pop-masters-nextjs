@@ -1,5 +1,5 @@
 "use client"
-import ProtectedPages from '@/pages/protectedPages';
+import ProtectedPages from '@/lib/protectedPages';
 import React, { useState, useEffect } from 'react';
 
 const Collections = () => {

@@ -1,10 +1,10 @@
 "use client"
-import ProtectedPages from "@/pages/protectedPages";
+import ProtectedPages from "@/lib/protectedPages";
 import { useEffect, useState } from "react";
 
 const MyCollection = () => {
     ProtectedPages();
-    
+
     const [collection, setCollection] = useState([""]);
 
     useEffect(() => {

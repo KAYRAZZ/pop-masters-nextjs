@@ -1,5 +1,5 @@
 "use client"
-import ProtectedPages from "@/pages/protectedPages"
+import ProtectedPages from "@/lib/protectedPages"
 import { useEffect, useState } from "react";
 import ParcelTracking from "./components/ParcelTracking";
 import { useSession } from "next-auth/react";

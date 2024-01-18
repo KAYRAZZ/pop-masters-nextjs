@@ -1,12 +1,12 @@
 "use client"
-import ProtectedPages from '@/pages/protectedPages';
+import ProtectedPages from '@/lib/protectedPages';
 import { useSearchParams } from 'next/navigation'
 
 import { useEffect, useState } from "react";
 
 const Search = () => {
     ProtectedPages();
-    
+
     const searchParams = useSearchParams()
     const search = searchParams.get('s')
 
