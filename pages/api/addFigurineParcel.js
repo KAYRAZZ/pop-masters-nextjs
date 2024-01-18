@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
 import { getToken } from "next-auth/jwt";
-import suiviParcel from "@/lib/suiviParcel";
 import { firefox, install } from 'playwright';
 
 
