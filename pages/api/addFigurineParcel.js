@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const token = await getToken({ req });
     const user_id = token.sub;
     const { suivi } = req.body;
-    // const figurine_id = parseInt(req.body.figurine_id, 10);
+    const figurine_id = parseInt(req.body.figurine_id, 10);
 
     try {
         const suiviParcelResult = await suiviParcel(suivi);
@@ -24,6 +24,11 @@ export default async function handler(req, res) {
 
     } catch (error) {
         console.error('Erreur de requête:', error);
-        res.status(500).json({ success: false, message: "Internal Server Error" });
+        // Ensure that `res` is defined before using it
+        if (res) {
+            res.status(500).json({ success: false, message: "Internal Server Error" });
+        } else {
+            console.error('Response object is not defined. Unable to send an error response.');
+        }
     }
 }
