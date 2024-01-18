@@ -35,7 +35,7 @@ const Dashboard = () => {
       <div className="container" id="bloc-recentlyAdded">
         <span id="recentlyAdded">Les 5 dernières POP ajoutées à la collection</span>
         <div id="little-figurines">
-          {recentlyAdded && recentlyAdded.map((item, index) => (
+          {recentlyAdded && recentlyAdded.length > 1 && recentlyAdded.map((item, index) => (
             <a key={index} className="little-figurine" href={`/figurine/${item.figurine_id}`}>
               <img src={item.figurine_image} />
               <div>
