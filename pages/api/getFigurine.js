@@ -5,6 +5,7 @@ export default async function handler(req, res) {
     const token = await getToken({ req });
     const user_id = token.sub;
 
+    // En base 10
     const figurine_id = parseInt(req.query.figurine_id, 10);
 
     try {
