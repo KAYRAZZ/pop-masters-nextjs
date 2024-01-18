@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 function ProtectedPages() {
-    const { data: session, status } = useSession();
+    const { status } = useSession();
     const router = useRouter()
     useEffect(() => {
         if (status && status === "unauthenticated") {
