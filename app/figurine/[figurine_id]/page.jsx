@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 const Figurine = ({ params }) => {
     ProtectedPages();
 
-    const figurine_id = params.figurine_id;
+    const figurine_id = parseInt(params.figurine_id);
 
     const [message, setMessage] = useState("");
     const [figurineDatas, setFigurineDatas] = useState([]);
