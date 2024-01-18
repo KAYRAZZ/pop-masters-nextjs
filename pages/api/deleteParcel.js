@@ -4,7 +4,7 @@ import { getToken } from "next-auth/jwt";
 export default async function handler(req, res) {
     const token = await getToken({ req });
     const user_id = token.sub;
-    const figurine_id = parseInt(req.body.figurine_id, 10);
+    const { figurine_id } = req.body;
 
     try {
         await prisma.parcelTracking.delete({
