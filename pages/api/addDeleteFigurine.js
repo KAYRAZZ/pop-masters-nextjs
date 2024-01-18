@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const token = await getToken({ req });
     const user_id = token.sub;
     const { collection } = req.body;
-    const figurine_id = parseInt(req.query.figurine_id, 10);
+    const figurine_id = parseInt(req.body.figurine_id, 10);
 
     const checkFigurineExists = async () => {
         return await prisma.collection.findMany({
