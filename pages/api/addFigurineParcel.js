@@ -5,11 +5,11 @@ import suiviParcel from "@/lib/suiviParcel";
 export default async function handler(req, res) {
     const token = await getToken({ req });
     const user_id = token.sub;
-    const { suivi, figurine_id } = req.body;
-
-    const suiviParcelResult = await suiviParcel(suivi);
-
+    const { suivi } = req.body;
+    const figurine_id = parseInt(req.body.figurine_id, 10);
+    
     try {
+        const suiviParcelResult = await suiviParcel(suivi);
         await prisma.parcelTracking.create({
             data: {
                 figurine_id,
