@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "npx prisma generate && next build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -26,8 +27,5 @@
   },
   "devDependencies": {
     "prisma": "^5.8.1"
-  },
-  "pkg": {
-    "assets": "node_modules/puppeteer-extra-plugin-stealth/**/*.*"
   }
 }
