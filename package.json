@@ -26,5 +26,8 @@
   },
   "devDependencies": {
     "prisma": "^5.8.1"
+  },
+  "pkg": {
+    "assets": "node_modules/puppeteer-extra-plugin-stealth/**/*.*"
   }
 }
