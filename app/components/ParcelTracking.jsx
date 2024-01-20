@@ -7,7 +7,7 @@ const ParcelTracking = () => {
     const [figurine, setFigurine] = useState([]);
     const [inputValue, setInputValue] = useState();
     const [inputSuivi, setInputSuivi] = useState();
-    const [parcelTracking, setParcelTracking] = useState([]);
+    const [parcelTracking, setParcelTracking] = useState([""]);
     const [showCloseWindow, setShowCloseWindow] = useState(false);
 
     let [actualise, setActualise] = useState(0)
@@ -131,6 +131,7 @@ const ParcelTracking = () => {
 
             {/* Affiche les parcels de l'utilisateur */}
             <div id="parcel-tracking">
+
                 {parcelTracking && parcelTracking.map((item, index) => (
                     <div key={index} className="bloc-figurine-parcel" >
                         <a className="little-figurine figurine-parcel" href={`/ figurine / ${item.figurine_id}`}>
@@ -139,9 +140,10 @@ const ParcelTracking = () => {
                                 <span>{item.figurine_name}</span>
                             </div>
                         </a>
+
                         <div className="bloc-parcel-data">
                             <div className="parcel-data">
-                                {item.donnees.map((itemSuivi, index) => (
+                                {item && item.donnees && item.donnees.map((itemSuivi, index) => (
                                     <div key={index}>
                                         {itemSuivi.suivi}
                                     </div>
